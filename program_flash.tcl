@@ -1,10 +1,9 @@
-set mode "QSPI"
-set device_name xc7s25_0
-#set cfgmem_part_name 
-set bit_file [glob [file normalize [file dirname [info script]]/*.bit]]
-set bin_file [glob [file normalize [file dirname [info script]]/*.bin]]
+set mode "JTAG"
+set device_name xc7a35t_0
+#set cfgmem_part_name
+set outputDir obj
 
-open_hw
+open_hw_manager
 if {[current_hw_server] == ""} {
 	connect_hw_server
 }
@@ -13,7 +12,8 @@ open_hw_target
 set hw_device [lindex [get_hw_devices $device_name] 0]
 
 if {$mode == "JTAG"} {
-
+	
+	set bit_file [glob $outputDir/final.bit]
 	set_property PROGRAM.FILE [lindex $bit_file 0] [get_hw_devices $device_name]
 	current_hw_device [get_hw_devices $device_name]
 	refresh_hw_device -update_hw_probes false $hw_device
@@ -21,7 +21,8 @@ if {$mode == "JTAG"} {
 	refresh_hw_device $hw_device
 	
 } elseif {$mode == "QSPI"} {
-	
+	set bin_file [glob $outputDir/final.bin]
+
 	create_hw_cfgmem -hw_device $hw_device [lindex [get_cfgmem_parts {mx25l3233f-spi-x1_x2_x4}] 0]
 	
 	set hw_cfgmem [get_property PROGRAM.HW_CFGMEM $hw_device]
