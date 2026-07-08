@@ -2,6 +2,9 @@
 
 This decouples on from the Vivado GUI flow, and saves some time during build and flashing.
 
+Note:
+1. Your top level module will need to be labelled top_level, this can always be changed
+2. Built for the Artix-7 on the Basys3  can be changed 
 
 Structure
 

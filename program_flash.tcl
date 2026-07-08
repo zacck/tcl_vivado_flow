@@ -56,4 +56,4 @@ if {$mode == "JTAG"} {
 
 }
 
-close_hw
+close_hw_manager
