@@ -18,5 +18,5 @@ Structure
 ### Files 
 - build.tcl: TCL script to build a bitfile from our source 
 - program_flash.tcl: TCL script to program our bitfile to the device 
-
-
+- sim/test_counter.py :  A cocotb test script for a simple module this, really just shows setup
+- hdl/counter.sv : A simple counter module to exercise the test module
